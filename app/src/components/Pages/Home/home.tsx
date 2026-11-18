@@ -2,6 +2,7 @@
 "use client";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { FiArrowRight } from "react-icons/fi";
 import { gsap } from "gsap";
@@ -25,6 +26,7 @@ const HT_W = 770;
 const HT_H = 600;
 
 export default function Home() {
+  const router = useRouter();
   const heroRef = useRef<HTMLElement>(null);
   const portraitRef = useRef<HTMLDivElement>(null);
   const halftoneRef = useRef<HTMLDivElement>(null);
@@ -127,7 +129,7 @@ export default function Home() {
     if (contact) {
       contact.scrollIntoView({ behavior: "smooth" });
     } else {
-      window.location.href = "/contact";
+      router.push("/contact");
     }
   };
 
@@ -296,9 +298,8 @@ export default function Home() {
         {/* Introduction */}
         <div className="hero-left-content">
           <p className="bio-line">Hey there! I&apos;m Yuti Acharya</p>
-          <p className="bio-line">A Full Stack Developer &amp;</p>
-          <p className="bio-line">AI &amp; Automation Engineer</p>
-          <p className="bio-line">turning ideas into real solutions.</p>
+          <p className="bio-line">I turn people challenges into better systems, early ideas into initiatives, and collaboration into measurable progress.</p>
+        
 
           <div className="bio-accent-rule" aria-hidden="true" />
         </div>

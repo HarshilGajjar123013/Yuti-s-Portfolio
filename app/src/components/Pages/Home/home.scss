@@ -328,7 +328,7 @@ $aubergine: #583b61;
 }
 
 /* Tablet */
-@media screen and (min-width: 641px) and (max-width: 1024px) {
+@media screen and (min-width: 769px) and (max-width: 1024px) {
   .hero-page {
     min-height: 680px;
 
@@ -374,111 +374,218 @@ $aubergine: #583b61;
   }
 }
 
-/* Mobile */
-@media screen and (max-width: 640px) {
+/* Mobile & Portrait Tablet */
+@media screen and (max-width: 768px) {
   .hero-page {
-    --row: 42px;
+    --row: 38px;
 
     display: flex;
     flex-direction: column;
     height: auto;
     min-height: 100svh;
-    padding: 0 1.25rem 3rem;
+    padding: calc(4.75rem + env(safe-area-inset-top, 0px)) 1.25rem 3.5rem;
     overflow: hidden;
+    position: relative;
+
+    .bg-canvas {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
 
     .bg-shapes {
-      opacity: 0.55;
+      opacity: 0.35;
     }
 
     .watermark-bg {
-      width: 180%;
-      max-width: none;
-      opacity: 0.65;
+      display: none;
     }
 
     .halftone-container {
-      top: 36%;
+      display: block;
+      position: absolute;
+      top: 170px;
       left: 50%;
-      width: 100vw;
-      margin-left: -50vw;
-      margin-top: calc(-50vw * 600 / 770);
+      width: 320px;
+      height: 250px;
+      margin-left: -160px;
+      margin-top: 0;
+      opacity: 0.45;
+      pointer-events: none;
+      z-index: 2;
+
+      .halftone-svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
     }
 
+    /* 1. Eyebrow */
     .hero-eyebrow {
+      order: 1;
       position: relative;
       top: auto;
       left: auto;
+      display: flex;
+      align-items: center;
       justify-content: center;
-      gap: 12px;
-      margin-top: 5.5rem;
+      gap: 10px;
+      margin: 0 auto 0.65rem;
       transform: none;
+      z-index: 4;
 
       .eyebrow-text {
+        font-family: "Space Grotesk", monospace;
         font-size: 0.75rem;
-        letter-spacing: 0.28em;
+        font-weight: 600;
+        letter-spacing: 0.24em;
+        color: $aubergine;
       }
 
       .eyebrow-line {
-        width: 52px;
+        display: block;
+        width: 42px;
+        height: 1.5px;
+        background: $aubergine;
+        opacity: 0.8;
       }
     }
 
+    /* 2. Headline - Single Line Typography */
     .hero-headline {
+      order: 2;
       position: relative;
       top: auto;
       left: auto;
       width: 100%;
-      margin: 1.2rem auto 0;
+      margin: 0.35rem auto 0;
+      padding: 0;
+      line-height: 0;
+      z-index: 3;
+      pointer-events: none;
+      user-select: none;
+
+      svg {
+        display: block;
+        width: 100%;
+        height: auto;
+        overflow: visible;
+      }
 
       text {
+        font-family: "Archivo", Impact, "Arial Black", sans-serif;
         font-size: 170px;
+        font-weight: 800;
+        fill: $oxblood;
       }
     }
 
+    /* 3. Portrait Stage */
     .portrait-container {
+      order: 3;
       position: relative;
       bottom: auto;
       left: auto;
       width: 100%;
-      height: auto;
-      margin: 0.75rem auto 0;
+      max-width: 320px;
+      height: 295px;
+      margin: 0.25rem auto 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
       transform: none;
+      z-index: 3;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 270px;
+        height: 270px;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(230, 223, 212, 0.7) 0%,
+          rgba(245, 240, 232, 0.3) 60%,
+          transparent 75%
+        );
+        z-index: 1;
+        pointer-events: none;
+      }
 
       .portrait-frame {
+        position: relative;
+        z-index: 2;
         width: 100%;
-        height: auto;
+        height: 100%;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
       }
 
       .portrait-img {
-        width: 100%;
-        height: auto;
+        display: block;
+        width: auto;
+        height: 100%;
         max-width: 100%;
-        max-height: 430px;
+        max-height: 295px;
         object-fit: contain;
         object-position: bottom center;
+        filter: drop-shadow(0 14px 28px rgba(23, 36, 58, 0.12));
       }
     }
 
+    /* 4. Bio & Mission */
     .hero-left-content {
+      order: 4;
       position: relative;
       top: auto;
       left: auto;
-      margin-top: 1.25rem;
+      margin-top: 1rem;
+      padding: 0 0.5rem;
       text-align: center;
+      z-index: 4;
 
       .bio-line {
-        font-size: clamp(0.92rem, 4vw, 1.1rem);
-        line-height: 1.6;
+        margin: 0;
+        color: $navy;
+        font-size: 0.96rem;
+        font-weight: 400;
+        line-height: 1.55;
+        letter-spacing: -0.01em;
         white-space: normal;
+
+        &:first-child {
+          font-family: "DM Sans", sans-serif;
+          font-weight: 600;
+          font-size: 1.05rem;
+          color: $navy;
+          letter-spacing: -0.01em;
+          margin-bottom: 0.2rem;
+        }
       }
 
       .bio-accent-rule {
-        width: 48px;
-        margin: 14px auto 0;
+        width: 38px;
+        height: 2px;
+        margin: 12px auto 0;
+        background: $oxblood;
+        border-radius: 2px;
       }
     }
 
+    /* 5. Hide Disciplines on Mobile */
+    .hero-right-content {
+      display: none !important;
+    }
+
+    /* 6. Hire Me CTA Button */
     .hero-cta-corner {
+      order: 5;
       position: relative;
       top: auto;
       left: auto;
@@ -486,67 +593,95 @@ $aubergine: #583b61;
       justify-content: center;
       margin-top: 1.75rem;
       transform: none;
+      z-index: 4;
 
       .hire-me-link {
-        gap: 12px;
-        font-size: 1.1rem;
-      }
-    }
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.7rem;
+        padding: 0.75rem 1.85rem;
+        background: $navy;
+        color: $ivory;
+        font-family: "Space Grotesk", monospace;
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-decoration: none;
+        border-radius: 9999px;
+        box-shadow: 0 10px 26px -6px rgba(23, 36, 58, 0.28);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+        -webkit-tap-highlight-color: transparent;
 
-    .hero-right-content {
-      position: relative;
-      top: auto;
-      left: auto;
-      display: flex;
-      justify-content: center;
-      margin-top: 2.25rem;
-      transform: none;
-
-      .disciplines-track {
-        gap: 1.25rem;
-      }
-
-      .track-rail {
-        flex-basis: 2px;
-
-        .track-node {
-          width: 13px;
-          height: 13px;
+        .hire-prefix {
+          color: rgba(245, 240, 232, 0.6);
+          font-weight: 400;
         }
-      }
 
-      .disciplines-list .discipline-row {
-        font-size: 1rem;
+        .hire-text {
+          letter-spacing: 0.18em;
+        }
+
+        .hire-arrow {
+          font-size: 1.15rem;
+          stroke-width: 2;
+          transition: transform 0.25s ease;
+        }
+
+        &:hover,
+        &:active {
+          background: $oxblood;
+          box-shadow: 0 12px 28px -4px rgba(112, 45, 58, 0.35);
+
+          .hire-arrow {
+            transform: translateX(4px);
+          }
+        }
       }
     }
   }
 }
 
-/* Small mobile */
+/* Small mobile (<= 380px) */
 @media screen and (max-width: 380px) {
   .hero-page {
-    padding-inline: 1rem;
+    padding-inline: 0.85rem;
 
-    .hero-eyebrow .eyebrow-text {
-      font-size: 0.68rem;
-    }
+    .portrait-container {
+      max-width: 260px;
+      height: 260px;
 
-    .hero-left-content .bio-line {
-      font-size: 0.9rem;
-    }
-
-    .hero-right-content {
-      .disciplines-track {
-        gap: 1rem;
-      }
-
-      .disciplines-list .discipline-row {
-        font-size: 0.9rem;
+      .portrait-img {
+        max-height: 260px;
       }
     }
 
-    .hero-cta-corner .hire-me-link {
-      font-size: 1rem;
+    .halftone-container {
+      width: 280px;
+      height: 220px;
+      margin-left: -140px;
+    }
+
+    .hero-left-content {
+      margin-top: 0.75rem;
+
+      .bio-line {
+        font-size: 0.88rem;
+
+        &:first-child {
+          font-size: 0.96rem;
+        }
+      }
+    }
+
+    .hero-cta-corner {
+      margin-top: 1.25rem;
+
+      .hire-me-link {
+        padding: 0.68rem 1.5rem;
+        font-size: 0.8rem;
+      }
     }
   }
 }
