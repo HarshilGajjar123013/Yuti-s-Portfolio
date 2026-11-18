@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import {
   FiArrowUpRight,
   FiCheck,
@@ -17,10 +17,7 @@ import {
   FaGithub,
   FaLinkedinIn,
   FaInstagram,
-  FaBehance,
 } from "react-icons/fa";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./contact.scss";
 
 const socialLinks = [
@@ -54,11 +51,6 @@ export default function Contact() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
 
-  const sectionRef = useRef<HTMLElement>(null);
-  const headerRef = useRef<HTMLDivElement>(null);
-  const cardsRef = useRef<HTMLDivElement>(null);
-  const formRef = useRef<HTMLFormElement>(null);
-
   const emailAddress = "harshilgajjar06@gmail.com";
 
   const handleCopyEmail = () => {
@@ -84,97 +76,36 @@ export default function Contact() {
     }, 4500);
   };
 
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const ctx = gsap.context(() => {
-      // 1. Header entrance
-      if (headerRef.current) {
-        gsap.fromTo(
-          headerRef.current.children,
-          { y: 30, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.8,
-            stagger: 0.12,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: headerRef.current,
-              start: "top 85%",
-              toggleActions: "play none none reverse",
-            },
-          }
-        );
-      }
-
-      // 2. Info Cards entrance
-      if (cardsRef.current) {
-        gsap.fromTo(
-          cardsRef.current.children,
-          { y: 35, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.8,
-            stagger: 0.1,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: cardsRef.current,
-              start: "top 85%",
-              toggleActions: "play none none reverse",
-            },
-          }
-        );
-      }
-
-      // 3. Form Reveal
-      if (formRef.current) {
-        gsap.fromTo(
-          formRef.current,
-          { y: 40, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.9,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: formRef.current,
-              start: "top 85%",
-              toggleActions: "play none none reverse",
-            },
-          }
-        );
-      }
-    }, sectionRef);
-
-    return () => {
-      ctx.revert();
-    };
-  }, []);
-
   return (
-    <section
-      className="contact-section"
-      id="contact"
-      ref={sectionRef}
-    >
-      <div className="contact-container">
-        {/* Section Header */}
-        <div className="contact-header" ref={headerRef}>
-          <div className="badge-wrapper">
-            <span className="contact-badge">Get In Touch</span>
-          </div>
-          <h2 className="contact-title">Contact Me</h2>
-          <p className="contact-subtitle">
-            Have a question, an exciting project opportunity, or just want to say hello? Leave a message below and I&apos;ll get back to you promptly.
-          </p>
-        </div>
+    <section className="contact-section" id="contact">
+      {/* Chic Ambient Glows */}
+      <div className="chic-glow glow-left" />
+      <div className="chic-glow glow-right" />
 
-        {/* Main Contact Grid (Contact Info on left, Standard Contact Form on right) */}
+      <div className="contact-container">
+        {/* ====================================================
+            Top Split Header: Kicker + Title + Right Subtitle (Matching Foundations)
+        ==================================================== */}
+        <header className="contact-header">
+          <div className="header-left">
+            <span className="contact-kicker">08 / CONTACT</span>
+            <h2 className="contact-title">
+              Say Hello &amp;<br />Collaborate.
+            </h2>
+          </div>
+
+          <div className="header-right">
+            <p className="contact-subtitle">
+              Have an exciting idea, a project to collaborate on, or just want to say hi?
+              Feel free to reach out anytime!
+            </p>
+          </div>
+        </header>
+
+        {/* Main Contact Grid (Contact Info on left, Clean Form on right) */}
         <div className="contact-main-grid">
           {/* Left Column: Direct Info & Social Hub */}
-          <div className="contact-info-column" ref={cardsRef}>
+          <div className="contact-info-column">
             {/* Live Availability Beacon Card */}
             <div className="info-card availability-card">
               <div className="availability-badge">
@@ -184,9 +115,9 @@ export default function Contact() {
                 </span>
                 <span className="availability-text">Available For Work</span>
               </div>
-              <h3 className="card-headline">Let&apos;s Start a Conversation</h3>
+              <h3 className="card-headline">Let&apos;s Create Something Lovely</h3>
               <p className="card-subtext">
-                Currently open for freelance contracts, full-time engineering roles, and technical collaborations worldwide.
+                Currently open for freelance contracts, full-time engineering roles, and creative design collaborations.
               </p>
             </div>
 
@@ -248,7 +179,7 @@ export default function Contact() {
 
             {/* Social Channels Stack */}
             <div className="info-card social-hub-card">
-              <span className="meta-label">Connect Across Platforms</span>
+              <span className="meta-label">Find Me Online</span>
               <div className="social-links-grid">
                 {socialLinks.map((social) => (
                   <a
@@ -267,17 +198,16 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Right Column: Standard Clean Contact Form */}
+          {/* Right Column: Clean Editorial Form */}
           <div className="contact-form-column">
             <form
               className="editorial-contact-form"
-              ref={formRef}
               onSubmit={handleSubmit}
             >
               <div className="form-header-box">
-                <h3 className="form-title">Send a Message</h3>
+                <h3 className="form-title">Send a Note</h3>
                 <p className="form-desc">
-                  Fill out the form below and I will get back to you as soon as possible.
+                  Fill in your details below and I&apos;ll get back to you promptly.
                 </p>
               </div>
 
@@ -292,7 +222,7 @@ export default function Contact() {
                     <input
                       id="contact-name"
                       type="text"
-                      placeholder="e.g. Harshil Gajjar"
+                      placeholder="e.g. Maya"
                       required
                       value={formData.name}
                       onChange={(e) =>
@@ -305,14 +235,14 @@ export default function Contact() {
 
                 <div className="input-group">
                   <label htmlFor="contact-email" className="field-label">
-                    Your Email Address
+                    Email Address
                   </label>
                   <div className="input-wrapper">
                     <FiMail className="input-icon" />
                     <input
                       id="contact-email"
                       type="email"
-                      placeholder="name@example.com"
+                      placeholder="hello@example.com"
                       required
                       value={formData.email}
                       onChange={(e) =>
@@ -334,7 +264,7 @@ export default function Contact() {
                   <input
                     id="contact-subject"
                     type="text"
-                    placeholder="e.g. Job Opportunity, Freelance Work, Collaboration, or General Inquiry"
+                    placeholder="Project Inquiry, Hello, Collaboration..."
                     value={formData.subject}
                     onChange={(e) =>
                       setFormData({ ...formData, subject: e.target.value })
@@ -354,7 +284,7 @@ export default function Contact() {
                   <textarea
                     id="contact-message"
                     rows={5}
-                    placeholder="Write your message here..."
+                    placeholder="Tell me a bit about your ideas or question..."
                     required
                     value={formData.message}
                     onChange={(e) =>

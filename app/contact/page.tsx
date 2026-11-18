@@ -5,9 +5,9 @@ import Footer from "../src/sections/Footer/footer";
 import BackToTop from "../src/components/Common/BackToTop/backToTop";
 
 export const metadata: Metadata = {
-  title: "Contact Me | Harshil Gajjar",
+  title: "Contact Me | Yuti Acharya",
   description:
-    "Get in touch with Harshil Gajjar for full-stack development, AI engineering, or technical collaboration inquiries.",
+    "Get in touch with Yuti Acharya for full-stack development, AI engineering, or technical collaboration inquiries.",
 };
 
 export default function ContactPage() {

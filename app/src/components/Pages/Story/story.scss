@@ -1,324 +1,517 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
+$ivory: #F5F0E8;
+$parchment: #E6DFD4;
+$navy: #17243A;
+$oxblood: #702D3A;
+$aubergine: #583B61;
+$tan: #9C7453;
+
 .story-section {
   width: 100%;
   min-height: 100vh;
-  background-color: #ffffff;
-  color: #18181b;
-  padding: clamp(3.5rem, 6vh, 5.5rem) clamp(1.5rem, 6vw, 6rem) clamp(5rem, 9vh, 8rem);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  background-color: $ivory;
+  color: $navy;
   position: relative;
-  font-family: var(--font-geist-sans), "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow: hidden;
+  padding: clamp(5rem, 9vh, 8.5rem) clamp(1.25rem, 5vw, 4rem);
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  box-sizing: border-box;
 
-  /* Spacious, Wide Container */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /* ----------------------------------------------------
+     Subtle Luxury Ambient Glows
+  ----------------------------------------------------- */
+  .story-ambient-glow {
+    position: absolute;
+    top: 5%;
+    left: -8%;
+    width: 50vw;
+    height: 50vw;
+    max-width: 650px;
+    max-height: 650px;
+    background: radial-gradient(circle, rgba(112, 45, 58, 0.045) 0%, rgba(88, 59, 97, 0.025) 45%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(55px);
+  }
+
+  .story-ambient-secondary {
+    position: absolute;
+    bottom: 5%;
+    right: -8%;
+    width: 45vw;
+    height: 45vw;
+    max-width: 550px;
+    max-height: 550px;
+    background: radial-gradient(circle, rgba(88, 59, 97, 0.035) 0%, rgba(112, 45, 58, 0.02) 45%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(55px);
+  }
+
   .story-container {
-    max-width: clamp(860px, 80vw, 1080px);
+    max-width: clamp(960px, 88vw, 1200px);
     width: 100%;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
+    gap: clamp(3.5rem, 6.5vh, 5.5rem);
   }
 
-  /* Section Title */
+  /* ----------------------------------------------------
+     Section Editorial Split Header (Matching Foundations)
+  ----------------------------------------------------- */
   .story-header {
-    text-align: center;
-    margin-bottom: 2.75rem;
-
-    .story-badge {
-      display: inline-block;
-      padding: 0.35rem 0.95rem;
-      border-radius: 9999px;
-      background-color: #f4f4f5;
-      color: #52525b;
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 0.85rem;
-    }
-
-    .story-title {
-      font-size: clamp(2.2rem, 4vw, 3rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      color: #18181b;
-      margin: 0;
-      line-height: 1.15;
-    }
-  }
-
-  /* 1st Paragraph (Before Images) */
-  .story-intro {
-    margin-bottom: 1.5rem;
-  }
-
-  /* Editorial Paragraphs Styling */
-  .editorial-text {
-    font-size: clamp(1.05rem, 1.4vw, 1.25rem);
-    line-height: 1.8;
-    letter-spacing: -0.01em;
-    color: #52525b;
-    margin: 0 0 1.5rem 0;
-
-    strong {
-      color: #18181b;
-      font-weight: 700;
-    }
-
-    &.secondary {
-      color: #71717a;
-      font-size: clamp(1rem, 1.3vw, 1.15rem);
-      line-height: 1.75;
-      margin-bottom: 0;
-    }
-  }
-
-  /* Pinned Polaroids Showcase (Between 1st & 2nd/3rd Paragraphs) */
-  .polaroid-showcase {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 3.5rem 0 4.25rem;
-    position: relative;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 2.5rem;
+    padding-bottom: clamp(1rem, 2vh, 1.5rem);
     width: 100%;
 
-    .polaroid-card {
-      background: #ffffff;
-      padding: 14px 14px 42px 14px;
-      border-radius: 4px;
+    .header-left {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+
+      .story-kicker {
+        font-family: "Space Grotesk", monospace, sans-serif;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: $tan;
+      }
+
+      .story-title {
+        font-family: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+        font-size: clamp(3.2rem, 6vw, 5.4rem);
+        font-weight: 600;
+        letter-spacing: -0.015em;
+        line-height: 1.02;
+        color: $navy;
+        margin: 0;
+      }
+    }
+
+    .header-right {
+      max-width: 440px;
+      margin-bottom: 0.5rem;
+
+      .story-subtitle {
+        font-family: "DM Sans", sans-serif;
+        font-size: clamp(0.95rem, 1.25vw, 1.05rem);
+        color: rgba(23, 36, 58, 0.7);
+        line-height: 1.62;
+        margin: 0;
+        font-weight: 400;
+      }
+    }
+  }
+
+  /* ----------------------------------------------------
+     Main Grid: Arched Portrait + Signature & Narrative
+  ----------------------------------------------------- */
+  .story-main-grid {
+    display: grid;
+    grid-template-columns: minmax(320px, 450px) 1fr;
+    gap: clamp(2.5rem, 5.5vw, 5rem);
+    align-items: center;
+  }
+
+  /* ----------------------------------------------------
+     Left Wing: Sculpted Arched Portrait Portal
+  ----------------------------------------------------- */
+  .story-arch-column {
+    display: flex;
+    justify-content: center;
+
+    .arch-portal-container {
       position: relative;
-      width: clamp(230px, 24vw, 310px);
-      user-select: none;
-      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+      width: 100%;
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      align-items: center;
+    }
 
-      .polaroid-inner {
+    /* Outer Floating Hairline Halo Arch (Encloses Full Silhouette) */
+    .arch-halo-frame {
+      position: absolute;
+      inset: -14px;
+      border-radius: 354px 354px 154px 154px;
+      border: 1px solid rgba(112, 45, 58, 0.22);
+      pointer-events: none;
+      z-index: 0;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    &:hover .arch-halo-frame {
+      inset: -18px;
+      border-color: rgba(112, 45, 58, 0.45);
+      box-shadow: 0 0 24px rgba(112, 45, 58, 0.08);
+    }
+
+    /* Sculpted Photo Vault with Distinctive Curved Bottom */
+    .arch-vault {
+      position: relative;
+      width: 100%;
+      height: clamp(480px, 58vh, 570px);
+      border-radius: 340px 340px 140px 140px; /* Distinctive curved dome top & sculpted rounded base */
+      overflow: hidden;
+      background: linear-gradient(155deg, #ded5c7 0%, $parchment 50%, #dbd1c2 100%);
+      box-shadow: 0 22px 50px -12px rgba(23, 36, 58, 0.16), 0 6px 18px rgba(23, 36, 58, 0.05);
+      border: 1px solid rgba(230, 223, 212, 0.95);
+      z-index: 1;
+
+      .arch-portrait-img {
         width: 100%;
-        aspect-ratio: 1 / 1;
-        overflow: hidden;
-        border-radius: 2px;
-        background-color: #f4f4f5;
+        height: 100%;
+        object-fit: cover;
+        object-position: top center;
+        display: block;
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
 
-        .polaroid-photo {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          display: block;
-          transition: transform 0.4s ease;
+      &:hover .arch-portrait-img {
+        transform: scale(1.03);
+      }
 
-          &.photo-one,
-          &.photo-two {
-            filter: none;
+      /* Top Floating Capsule Tag */
+      .arch-tag-top {
+        position: absolute;
+        top: 1.4rem;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        z-index: 3;
+        pointer-events: none;
+
+        .arch-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.45rem;
+          padding: 0.4rem 0.95rem;
+          border-radius: 9999px;
+          background: rgba(23, 36, 58, 0.8);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          color: $ivory;
+          font-family: "Space Grotesk", monospace, sans-serif;
+          font-size: 0.725rem;
+          font-weight: 600;
+          letter-spacing: 0.04em;
+          border: 1px solid rgba(255, 255, 255, 0.18);
+          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+
+          .badge-star {
+            color: #fbbf24;
+            font-size: 0.85rem;
           }
         }
       }
 
-      /* 3D Realistic Pushpin */
-      .pushpin {
+      /* Bottom Status Capsule Floating Above Curved Base */
+      .arch-tag-bottom {
         position: absolute;
-        top: -9px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 20px;
-        height: 20px;
-        z-index: 6;
-        pointer-events: none;
+        bottom: 1.35rem;
+        left: 1.5rem;
+        right: 1.5rem;
+        z-index: 3;
+        display: flex;
+        justify-content: center;
 
-        .pin-head {
-          display: block;
-          width: 18px;
-          height: 18px;
-          border-radius: 50%;
-          background: radial-gradient(circle at 35% 35%, #4b5563, #1f2937 60%, #111827 100%);
-          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.4);
-        }
+        .status-pill {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.55rem;
+          width: 100%;
+          max-width: 310px;
+          padding: 0.45rem 1rem;
+          border-radius: 9999px;
+          background: rgba(245, 240, 232, 0.94);
+          backdrop-filter: blur(14px);
+          -webkit-backdrop-filter: blur(14px);
+          border: 1px solid rgba(230, 223, 212, 0.95);
+          box-shadow: 0 6px 20px rgba(23, 36, 58, 0.12);
 
-        .pin-shadow {
-          position: absolute;
-          bottom: -3px;
-          left: 3px;
-          width: 14px;
-          height: 5px;
-          border-radius: 50%;
-          background: rgba(0, 0, 0, 0.25);
-          filter: blur(2px);
-        }
-      }
+          .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #10b981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.28);
+          }
 
-      &:hover {
-        .polaroid-photo {
-          transform: scale(1.05);
+          .status-label {
+            font-family: "Space Grotesk", monospace, sans-serif;
+            font-size: 0.725rem;
+            font-weight: 700;
+            color: $navy;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+          }
         }
       }
     }
 
-    /* Left Polaroid: Tilted Counter-Clockwise */
-    .polaroid-left {
-      transform: rotate(-7deg);
-      box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.18), 0 2px 6px rgba(0, 0, 0, 0.08);
-      z-index: 1;
-
-      &:hover {
-        transform: rotate(-2deg) scale(1.05);
-        z-index: 10;
-        box-shadow: 0 28px 56px -12px rgba(0, 0, 0, 0.28);
-      }
-    }
-
-    /* Right Polaroid: Tilted Clockwise & Overlapping */
-    .polaroid-right {
-      transform: rotate(6deg);
-      margin-left: -40px;
-      box-shadow: 0 22px 46px -12px rgba(0, 0, 0, 0.24), 0 2px 6px rgba(0, 0, 0, 0.08);
-      z-index: 2;
-
-      &:hover {
-        transform: rotate(2deg) scale(1.05);
-        z-index: 10;
-        box-shadow: 0 28px 56px -12px rgba(0, 0, 0, 0.28);
-      }
-    }
-  }
-
-  /* 2 Paragraphs (After Images) */
-  .story-body {
-    margin-bottom: 2.5rem;
-  }
-
-  /* View Resume CTA Button */
-  .story-cta-wrapper {
-    display: flex;
-    justify-content: flex-start;
-
-    .resume-btn {
+    /* Minimalist Location Plinth Under Arch */
+    .arch-location-plinth {
       display: inline-flex;
       align-items: center;
-      gap: 0.6rem;
-      background-color: #18181b;
-      color: #ffffff;
-      padding: 0.85rem 1.75rem;
+      gap: 0.45rem;
+      padding: 0.35rem 0.9rem;
       border-radius: 9999px;
-      font-size: 0.925rem;
-      font-weight: 500;
-      text-decoration: none;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      background: rgba(230, 223, 212, 0.5);
+      border: 1px solid rgba(23, 36, 58, 0.08);
+      color: rgba(23, 36, 58, 0.7);
+      font-family: "Space Grotesk", monospace, sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      z-index: 1;
 
-      .btn-icon {
-        font-size: 1.05rem;
+      .plinth-icon {
+        color: $oxblood;
+        font-size: 0.85rem;
       }
+    }
+  }
 
-      .arrow-icon {
-        font-size: 1.1rem;
-        transition: transform 0.25s ease;
-      }
+  /* ----------------------------------------------------
+     Right Wing: Signature & Clean Narrative Content
+  ----------------------------------------------------- */
+  .story-narrative-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
 
-      &:hover {
-        background-color: #000000;
-        transform: translateY(-2px);
-        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+    /* Signature Area (Authentic Handwritten Look) */
+    .signature-area {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      align-items: flex-start;
 
-        .arrow-icon {
-          transform: translate(2px, -2px);
+      .signature-art {
+        .signature-script {
+          font-family: "Great Vibes", "Caveat", cursive, serif;
+          font-size: clamp(3.6rem, 5.8vw, 4.8rem);
+          color: $navy;
+          line-height: 1;
+          display: inline-block;
+          transform: rotate(-2deg);
+          letter-spacing: 0.02em;
+          filter: drop-shadow(0 2px 6px rgba(23, 36, 58, 0.06));
+          transition: transform 0.3s ease, color 0.3s ease;
+
+          &:hover {
+            transform: rotate(0deg) scale(1.02);
+            color: $oxblood;
+          }
         }
       }
 
-      &:active {
-        transform: translateY(0);
+      .signature-caption {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        margin-top: -0.2rem;
+
+        .caption-dash {
+          width: 28px;
+          height: 1px;
+          background-color: $oxblood;
+        }
+
+        .caption-text {
+          font-family: "Space Grotesk", monospace, sans-serif;
+          font-size: 0.775rem;
+          font-weight: 700;
+          letter-spacing: 0.09em;
+          color: $aubergine;
+          text-transform: uppercase;
+        }
+      }
+    }
+
+    /* Narrative Paragraphs (Spacious & Clean) */
+    .narrative-body {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+
+      .narrative-p {
+        font-size: clamp(1rem, 1.2vw, 1.1rem);
+        line-height: 1.85;
+        color: rgba(23, 36, 58, 0.82);
+        margin: 0;
+        font-weight: 400;
+
+        strong {
+          color: $navy;
+          font-weight: 600;
+        }
+
+        &.lead {
+          color: rgba(23, 36, 58, 0.92);
+          font-size: clamp(1.05rem, 1.3vw, 1.15rem);
+        }
+      }
+    }
+
+    /* Refined Action Buttons */
+    .story-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+      padding-top: 1.4rem;
+      border-top: 1px solid rgba(23, 36, 58, 0.1);
+
+      .story-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.8rem 1.6rem;
+        border-radius: 9999px;
+        font-family: "Space Grotesk", monospace, sans-serif;
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        white-space: nowrap;
+
+        &.primary-btn {
+          background-color: $oxblood;
+          color: $ivory;
+          border: 1px solid rgba(112, 45, 58, 0.2);
+          box-shadow: 0 4px 16px rgba(112, 45, 58, 0.28);
+
+          .btn-icon {
+            font-size: 1rem;
+            transition: transform 0.25s ease;
+          }
+
+          .btn-pill {
+            font-size: 0.65rem;
+            font-weight: 800;
+            padding: 0.15rem 0.45rem;
+            border-radius: 9999px;
+            background-color: rgba(255, 255, 255, 0.22);
+            color: $ivory;
+            letter-spacing: 0.05em;
+          }
+
+          &:hover {
+            background-color: $aubergine;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(88, 59, 97, 0.32);
+
+            .btn-icon {
+              transform: translateY(2px);
+            }
+          }
+
+          &:active {
+            transform: translateY(0);
+          }
+        }
+
+        &.secondary-btn {
+          background-color: transparent;
+          color: $navy;
+          border: 1px solid rgba(23, 36, 58, 0.28);
+
+          .arrow-icon {
+            font-size: 1rem;
+            color: $oxblood;
+            transition: transform 0.2s ease;
+          }
+
+          &:hover {
+            background-color: rgba(230, 223, 212, 0.7);
+            border-color: $navy;
+            transform: translateY(-2px);
+
+            .arrow-icon {
+              transform: translate(3px, -3px);
+            }
+          }
+
+          &:active {
+            transform: translateY(0);
+          }
+        }
       }
     }
   }
 
-  /* Responsive Adjustments */
+  /* ----------------------------------------------------
+     Responsiveness
+  ----------------------------------------------------- */
+  @media (max-width: 960px) {
+    .story-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.25rem;
+
+      .header-right {
+        max-width: 100%;
+        margin-bottom: 0;
+      }
+    }
+  }
+
   @media (max-width: 1024px) {
-    .polaroid-showcase {
-      .polaroid-card {
-        width: clamp(190px, 24vw, 260px);
+    .story-main-grid {
+      grid-template-columns: 1fr;
+      gap: 3.5rem;
+    }
+
+    .story-arch-column {
+      .arch-portal-container {
+        max-width: 440px;
       }
     }
   }
 
-  @media (max-width: 768px) {
-    padding: clamp(3.5rem, 6vh, 4.5rem) 1.25rem clamp(4.5rem, 8vh, 6rem);
+  @media (max-width: 640px) {
+    padding: 4.5rem 1.15rem 5.5rem;
 
-    .story-header {
-      margin-bottom: 2rem;
+    .story-arch-column {
+      .arch-vault {
+        height: 420px;
+        border-radius: 260px 260px 100px 100px;
+      }
 
-      .story-title {
-        font-size: clamp(2rem, 6vw, 2.5rem);
+      .arch-halo-frame {
+        border-radius: 274px 274px 114px 114px;
       }
     }
 
-    .polaroid-showcase {
-      margin: 2.25rem 0 2.75rem;
+    .story-narrative-column {
+      .story-actions {
+        flex-direction: column;
+        align-items: stretch;
 
-      .polaroid-card {
-        width: clamp(150px, 42vw, 210px);
-        padding: 10px 10px 30px 10px;
+        .story-btn {
+          justify-content: center;
+          width: 100%;
+        }
       }
-
-      .polaroid-right {
-        margin-left: -20px;
-      }
-    }
-
-    .story-cta-wrapper {
-      justify-content: center;
-
-      .resume-btn {
-        min-height: 44px;
-      }
-    }
-  }
-
-  /* Small Mobile (320px - 374px) */
-  @media (max-width: 374px) {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
-
-    .story-header {
-      .story-title {
-        font-size: 1.85rem;
-      }
-    }
-
-    .editorial-text {
-      font-size: 0.95rem;
-      line-height: 1.65;
-      overflow-wrap: break-word;
-    }
-
-    .polaroid-showcase {
-      margin: 1.75rem 0 2.25rem;
-
-      .polaroid-card {
-        width: clamp(130px, 40vw, 155px);
-        padding: 8px 8px 24px 8px;
-      }
-
-      .polaroid-left {
-        transform: rotate(-4deg);
-      }
-
-      .polaroid-right {
-        transform: rotate(4deg);
-        margin-left: -15px;
-      }
-    }
-
-    .story-cta-wrapper {
-      .resume-btn {
-        width: 100%;
-        max-width: 280px;
-        justify-content: center;
-      }
-    }
-  }
-
-  /* Ultra-wide Screen Containment (1920px+) */
-  @media (min-width: 1920px) {
-    .story-container {
-      max-width: 1140px;
-      margin: 0 auto;
     }
   }
 }

@@ -1,8 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Yuti Archarya Brand Palette */
+  --brand-ivory: #F5F0E8;        /* 1. Archive Ivory - Primary background */
+  --brand-parchment: #E6DFD4;    /* 2. Parchment - Secondary background */
+  --brand-midnight: #17243A;     /* 3. Midnight Ink - Primary text */
+  --brand-oxblood: #702D3A;      /* 4. Oxblood - Accent / CTA / links */
+  --brand-aubergine: #583B61;    /* 5. Aubergine - Signature colour / motifs */
+
+  --background: var(--brand-ivory);
+  --foreground: var(--brand-midnight);
 }
 
 @theme inline {
@@ -12,20 +19,39 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--brand-ivory);
+  color: var(--brand-midnight);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
   overflow-x: hidden;
   position: relative;
   width: 100%;
+}
+
+/* Custom Selection using Brand Oxblood */
+::selection {
+  background-color: var(--brand-oxblood);
+  color: var(--brand-ivory);
+}
+::-moz-selection {
+  background-color: var(--brand-oxblood);
+  color: var(--brand-ivory);
+}
+
+/* Custom Scrollbar using Brand Colors */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--brand-ivory);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--brand-parchment);
+  border-radius: 5px;
+  border: 2px solid var(--brand-ivory);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-aubergine);
 }
 
 /* Ensure all images and embedded media respect container bounds */

@@ -13,13 +13,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Harshil Gajjar | Full Stack Developer & AI Engineer",
+  title: "Yuti Acharya | Full Stack Developer & AI Engineer",
   description:
-    "Portfolio of Harshil Gajjar — Full Stack Architect, AI Agent Workflows, and Automation Systems Engineer.",
+    "Portfolio of Yuti Acharya — Full Stack Developer & AI & Automation Engineer turning ideas into real solutions.",
   icons: {
-    icon: "/assert/img/story.png",
-    shortcut: "/assert/img/story.png",
-    apple: "/assert/img/story.png",
+    icon: "/assert/img/yuti.png",
+    shortcut: "/assert/img/yuti.png",
+    apple: "/assert/img/yuti.png",
   },
 };
 

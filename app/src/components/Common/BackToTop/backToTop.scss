@@ -1,3 +1,9 @@
+$ivory: #F5F0E8;
+$parchment: #E6DFD4;
+$navy: #17243A;
+$oxblood: #702D3A;
+$aubergine: #583B61;
+
 .back-to-top-wrapper {
   position: fixed;
   bottom: clamp(1.5rem, 3.5vh, 2.5rem);
@@ -44,13 +50,13 @@
 
       .ring-bg {
         fill: none;
-        stroke: rgba(24, 24, 27, 0.12);
+        stroke: rgba(23, 36, 58, 0.15);
         transition: stroke 0.25s ease;
       }
 
       .ring-fill {
         fill: none;
-        stroke: #18181b;
+        stroke: $oxblood;
         stroke-linecap: round;
         transition: stroke-dashoffset 0.15s ease-out;
       }
@@ -61,13 +67,13 @@
       width: 42px;
       height: 42px;
       border-radius: 50%;
-      background-color: #18181b;
-      color: #ffffff;
+      background-color: $navy;
+      color: $ivory;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.15rem;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+      box-shadow: 0 6px 18px rgba(23, 36, 58, 0.25);
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 
       .arrow-icon {
@@ -81,8 +87,8 @@
       bottom: calc(100% + 8px);
       left: 50%;
       transform: translateX(-50%) translateY(4px);
-      background-color: #18181b;
-      color: #ffffff;
+      background-color: $navy;
+      color: $ivory;
       padding: 0.25rem 0.6rem;
       border-radius: 6px;
       font-size: 0.725rem;
@@ -92,7 +98,7 @@
       pointer-events: none;
       opacity: 0;
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 4px 12px rgba(23, 36, 58, 0.2);
 
       /* Triangle caret pointing to button */
       &::after {
@@ -103,7 +109,7 @@
         transform: translateX(-50%);
         border-width: 4px;
         border-style: solid;
-        border-color: #18181b transparent transparent transparent;
+        border-color: $navy transparent transparent transparent;
       }
     }
 
@@ -111,8 +117,8 @@
       transform: translateY(-4px);
 
       .btn-inner {
-        background-color: #000000;
-        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+        background-color: $oxblood;
+        box-shadow: 0 10px 24px rgba(112, 45, 58, 0.35);
 
         .arrow-icon {
           transform: translateY(-3px);
@@ -129,7 +135,7 @@
       transform: translateY(-1px) scale(0.95);
 
       .btn-inner {
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 4px 12px rgba(112, 45, 58, 0.25);
       }
     }
   }

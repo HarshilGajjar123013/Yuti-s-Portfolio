@@ -2,19 +2,18 @@
 
 import Image from "next/image";
 import React, { useEffect, useRef } from "react";
-import { FiArrowUpRight, FiFileText } from "react-icons/fi";
+import {
+  FiArrowUpRight,
+  FiDownload,
+  FiStar,
+  FiMapPin,
+} from "react-icons/fi";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./story.scss";
 
 export default function Story() {
   const storyRef = useRef<HTMLElement>(null);
-  const badgeRef = useRef<HTMLSpanElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const introRef = useRef<HTMLDivElement>(null);
-  const polaroidsRef = useRef<HTMLDivElement>(null);
-  const bodyRef = useRef<HTMLDivElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const prefersReducedMotion =
@@ -26,31 +25,37 @@ export default function Story() {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // About / My Story Staggered Upward Reveal
-      const revealItems = [
-        badgeRef.current,
-        titleRef.current,
-        introRef.current,
-        polaroidsRef.current,
-        bodyRef.current,
-        ctaRef.current,
-      ].filter(Boolean);
-
+      // Header reveal
       gsap.fromTo(
-        revealItems,
-        {
-          y: 24,
-          opacity: 0,
-        },
+        ".story-header-item",
+        { y: 25, opacity: 0 },
         {
           y: 0,
           opacity: 1,
           duration: 0.8,
-          stagger: 0.1,
+          stagger: 0.12,
           ease: "power2.out",
           scrollTrigger: {
             trigger: storyRef.current,
-            start: "top 72%",
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+
+      // Arch and content reveal
+      gsap.fromTo(
+        ".story-body-item",
+        { y: 35, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.85,
+          stagger: 0.15,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ".story-main-grid",
+            start: "top 78%",
             toggleActions: "play none none reverse",
           },
         }
@@ -62,11 +67,11 @@ export default function Story() {
     };
   }, []);
 
-  const handleResumeClick = () => {
+  const handleResumeDownload = () => {
     try {
       const downloadLink = document.createElement("a");
       downloadLink.href = "/assert/doc/resume.pdf";
-      downloadLink.download = "Harshil_Gajjar_Resume.pdf";
+      downloadLink.download = "Yuti_Acharya_Resume.pdf";
       document.body.appendChild(downloadLink);
       downloadLink.click();
       document.body.removeChild(downloadLink);
@@ -75,111 +80,144 @@ export default function Story() {
     }
   };
 
+  const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
+    const el = document.getElementById(targetId);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section className="story-section" id="story" ref={storyRef}>
+      {/* Subtle brand ambient accents */}
+      <div className="story-ambient-glow" aria-hidden="true" />
+      <div className="story-ambient-secondary" aria-hidden="true" />
+
       <div className="story-container">
-        {/* Section Heading */}
-        <div className="story-header">
-          <span className="story-badge" ref={badgeRef}>
-            About Me
-          </span>
-          <h2 className="story-title" ref={titleRef}>
-            My Story
-          </h2>
-        </div>
+        {/* ====================================================
+            Editorial Header: Clean Split Style (Matching Foundations)
+        ==================================================== */}
+        <header className="story-header">
+          <div className="header-left">
+            <span className="story-kicker">02 / STORY</span>
+            <h2 className="story-title">About me.</h2>
+          </div>
 
-        {/* 1st Paragraph (Before Images) */}
-        <div className="story-intro" ref={introRef}>
-          <p className="editorial-text">
-            <strong>
-              I&apos;m Harshil, A Strategic And Innovation-Driven Full Stack Developer &amp; AI &amp; Automation Engineer.
-            </strong>{" "}
-            <span>
-              Passionate About Architecting High-Performance Systems And Intelligent
-              Workflows. I Leverage Modern Technology To Help Companies Meet Their
-              Visionary Goals.
-            </span>{" "}
-            <strong>Analytical, Results-Focused, And Highly Collaborative,</strong>{" "}
-            <span>
-              I Excel At Crafting Seamless Digital Experiences That Drive Lasting Success.
-            </span>
-          </p>
-        </div>
+          <div className="header-right">
+            <p className="story-subtitle">
+              Blending human ingenuity with intelligent systems to architect purposeful,
+              frictionless digital experiences and scalable web software.
+            </p>
+          </div>
+        </header>
 
-        {/* Pinned Polaroids Showcase (Between 1st & 2nd/3rd Paragraphs) */}
-        <div className="polaroid-showcase" ref={polaroidsRef}>
-          {/* Polaroid 1 (Tilted Left) */}
-          <div className="polaroid-card polaroid-left">
-            <div className="pushpin" aria-hidden="true">
-              <span className="pin-head" />
-              <span className="pin-shadow" />
-            </div>
-            <div className="polaroid-inner">
-              <Image
-                src="/assert/img/story.png"
-                alt="Harshil Gajjar portrait"
-                width={1254}
-                height={1254}
-                className="polaroid-photo photo-one"
-                priority
-              />
+        {/* ====================================================
+            Main Grid: Sculpted Arched Portrait + Signature & Story
+        ==================================================== */}
+        <div className="story-main-grid">
+          {/* Left Wing: Distinctive Arched Portrait Portal */}
+          <div className="story-arch-column story-body-item">
+            <div className="arch-portal-container">
+              {/* Outer Floating Hairline Halo Arch */}
+              <div className="arch-halo-frame" aria-hidden="true" />
+
+              {/* Sculpted Arched Photo Vault (Single High-Res Image) */}
+              <div className="arch-vault">
+                <Image
+                  src="/assert/img/yuti.png"
+                  alt="Yuti Acharya - Full Stack & AI Engineer"
+                  width={900}
+                  height={1100}
+                  priority
+                  className="arch-portrait-img"
+                />
+
+                {/* Overlaid Top Tag */}
+                <div className="arch-tag-top">
+                  <span className="arch-badge">
+                    <FiStar className="badge-star" />
+                    <span>Full Stack &bull; AI Engineer</span>
+                  </span>
+                </div>
+
+                {/* Overlaid Bottom Status Badge */}
+                <div className="arch-tag-bottom">
+                  <div className="status-pill">
+                    <span className="status-dot" />
+                    <span className="status-label">Available for Select Projects</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Under-arch Minimalist Location Plinth */}
+              <div className="arch-location-plinth">
+                <FiMapPin className="plinth-icon" />
+                <span>Ahmedabad, India &bull; Working Worldwide</span>
+              </div>
             </div>
           </div>
 
-          {/* Polaroid 2 (Tilted Right & Overlapping) */}
-          <div className="polaroid-card polaroid-right">
-            <div className="pushpin" aria-hidden="true">
-              <span className="pin-head" />
-              <span className="pin-shadow" />
+          {/* Right Wing: Signature & Clean Narrative Content */}
+          <div className="story-narrative-column story-body-item">
+            {/* Signature & Author Identity */}
+            <div className="signature-area">
+              <div className="signature-art">
+                <span className="signature-script">Yuti Acharya</span>
+              </div>
+              <div className="signature-caption">
+                <span className="caption-dash" />
+                <span className="caption-text">Full Stack Developer &amp; AI Engineer</span>
+              </div>
             </div>
-            <div className="polaroid-inner">
-              <Image
-                src="/assert/img/story3.png"
-                alt="Harshil Gajjar portrait"
-                width={1254}
-                height={1254}
-                className="polaroid-photo photo-two"
-              />
+
+            {/* Concise, High-Impact Narrative Prose (Less Content, Pure Quality) */}
+            <div className="narrative-body">
+              <p className="narrative-p lead">
+                I&apos;m <strong>Yuti Acharya</strong>, an engineer and strategist dedicated to building
+                high-performance web applications, intelligent automations, and resilient digital architectures
+                that transform complex workflows into effortless human experiences.
+              </p>
+
+              <p className="narrative-p">
+                My engineering ethos bridges clean code with deliberate aesthetics. From architecting
+                <strong> Salahakar AI</strong>—an intelligent legal advisory ecosystem—to crafting
+                bespoke luxury digital storefronts like <strong>Designs of Dreams</strong>, I design software
+                that pairs technical rigor with sub-100ms fluidity.
+              </p>
+
+              <p className="narrative-p">
+                I thrive at the intersection of modern full-stack development, agentic workflows, and
+                tactile product design. Every project is approached with curiosity, craftsmanship, and a
+                commitment to building enduring value.
+              </p>
+            </div>
+
+            {/* Refined Action Buttons Station */}
+            <div className="story-actions">
+              <a
+                href="/assert/doc/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={handleResumeDownload}
+                className="story-btn primary-btn"
+                title="Download Yuti Acharya's Resume (PDF)"
+              >
+                <FiDownload className="btn-icon" />
+                <span>Download Resume</span>
+                <span className="btn-pill">PDF</span>
+              </a>
+
+              <a
+                href="#contact"
+                onClick={(e) => handleScrollTo(e, "contact")}
+                className="story-btn secondary-btn"
+              >
+                <span>Let&apos;s Connect</span>
+                <FiArrowUpRight className="arrow-icon" />
+              </a>
             </div>
           </div>
-        </div>
-
-        {/* 2 Paragraphs (After Images) */}
-        <div className="story-body" ref={bodyRef}>
-          <p className="editorial-text">
-            <strong>
-              I&apos;m Always Evolving—Refining My Technical Skills, Architectural Approaches, And Engineering Mindset
-            </strong>{" "}
-            <span>
-              To Meet The Ever-Changing Challenges Of The Tech Landscape. I Thrive In Proactive,
-              Ambitious Teams That Value Scalable Architecture, Clean Code, And
-              Innovative Engineering Cultures.
-            </span>
-          </p>
-
-          <p className="editorial-text secondary">
-            <span>
-              In My Free Time, I Love Diving Into Emerging AI Research, Automating
-              Complex Processes, And Building Passion Projects. Being At The Intersection
-              Of Creativity And Engineering Fills Me With Energy And Pure Drive!
-            </span>
-          </p>
-        </div>
-
-        {/* View Resume CTA */}
-        <div className="story-cta-wrapper" ref={ctaRef}>
-          <a
-            href="/assert/doc/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="resume-btn"
-            onClick={handleResumeClick}
-            title="Open and download resume"
-          >
-            <FiFileText className="btn-icon" />
-            <span>View My Resume</span>
-            <FiArrowUpRight className="arrow-icon" />
-          </a>
         </div>
       </div>
     </section>

@@ -16,26 +16,27 @@ import {
   FaGithub,
   FaLinkedinIn,
   FaInstagram,
-  FaBehance,
 } from "react-icons/fa";
 import "./footer.scss";
 
 const navLinks = [
   { label: "Home", href: "#home", id: "home" },
   { label: "My Story", href: "#story", id: "story" },
-  { label: "Academic Journey", href: "#education", id: "education" },
-  { label: "Technical Arsenal", href: "#skills", id: "skills" },
-  { label: "Featured Projects", href: "#projects", id: "projects" },
+  { label: "Education", href: "#education", id: "education" },
+  { label: "Community", href: "#skills", id: "skills" },
+  { label: "Practice", href: "#projects", id: "projects" },
+  { label: "Building", href: "#building", id: "building" },
+  { label: "Questions", href: "#questions", id: "questions" },
   { label: "Contact", href: "#contact", id: "contact" },
 ];
 
 const specializations = [
-  "Full Stack Web Platforms",
-  "Autonomous AI Agent Workflows",
-  "Enterprise n8n Automations",
-  "Next.js 15 & Server Components",
-  "Distributed Systems & APIs",
-  "High-Converting UI/UX Engineering",
+  "Talent Acquisition & Sourcing",
+  "People Analytics & Operations",
+  "HRMS & Workflow Automation",
+  "Policy Architecture & SOPs",
+  "Organizational Governance",
+  "Stakeholder Alignment & Scaling",
 ];
 
 const socialLinks = [
@@ -158,9 +159,9 @@ export default function Footer() {
           {/* Column 1: Brand & Direct Connect */}
           <div className="footer-col brand-col">
             <div className="brand-header">
-              <span className="brand-monogram">HG</span>
+              <span className="brand-monogram">YA</span>
               <div className="brand-info">
-                <span className="brand-name">HARSHIL GAJJAR</span>
+                <span className="brand-name">YUTI ACHARYA</span>
                 <span className="brand-title">Full Stack Developer &amp; AI Engineer</span>
               </div>
             </div>
@@ -256,14 +257,14 @@ export default function Footer() {
 
         {/* Giant Monogram Horizon Watermark */}
         <div className="footer-giant-watermark" aria-hidden="true">
-          <span className="watermark-text">HARSHIL GAJJAR</span>
+          <span className="watermark-text">YUTI ACHARYA</span>
         </div>
 
         {/* Bottom Bar: Copyright & Tech Badges */}
         <div className="footer-bottom-bar">
           <div className="bottom-left">
             <p className="copyright-text">
-              &copy; {new Date().getFullYear()} Harshil Gajjar. All rights reserved.
+              &copy; {new Date().getFullYear()} Yuti Acharya. All rights reserved.
             </p>
             <span className="tech-badge">
               <FiTerminal className="badge-icon" />
