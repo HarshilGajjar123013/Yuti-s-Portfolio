@@ -53,40 +53,44 @@ export default function Education() {
       // Reveal content rows
       if (contentRef.current) {
         const rows = contentRef.current.querySelectorAll(".foundations-row");
-        gsap.fromTo(
-          rows,
-          { y: 28, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.8,
-            stagger: 0.14,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: contentRef.current,
-              start: "top 80%",
-              toggleActions: "play none none reverse",
-            },
-          }
-        );
+        if (rows.length > 0) {
+          gsap.fromTo(
+            rows,
+            { y: 28, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.8,
+              stagger: 0.14,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: contentRef.current,
+                start: "top 80%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
+        }
 
         const tags = contentRef.current.querySelectorAll(".competency-box");
-        gsap.fromTo(
-          tags,
-          { y: 16, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.6,
-            stagger: 0.05,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: ".competencies-boxes",
-              start: "top 88%",
-              toggleActions: "play none none reverse",
-            },
-          }
-        );
+        if (tags.length > 0) {
+          gsap.fromTo(
+            tags,
+            { y: 16, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.6,
+              stagger: 0.05,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: ".competencies-boxes",
+                start: "top 88%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
+        }
       }
     }, sectionRef);
 

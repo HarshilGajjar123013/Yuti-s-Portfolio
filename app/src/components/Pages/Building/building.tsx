@@ -133,22 +133,24 @@ export default function Building() {
       // Reveal venture cards
       if (cardsRef.current) {
         const cards = cardsRef.current.querySelectorAll(".venture-card");
-        gsap.fromTo(
-          cards,
-          { y: 35, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.85,
-            stagger: 0.15,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: cardsRef.current,
-              start: "top 80%",
-              toggleActions: "play none none reverse",
-            },
-          }
-        );
+        if (cards.length > 0) {
+          gsap.fromTo(
+            cards,
+            { y: 35, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.85,
+              stagger: 0.15,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: cardsRef.current,
+                start: "top 80%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
+        }
       }
     }, sectionRef);
 

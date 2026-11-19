@@ -14,6 +14,8 @@ import "./story.scss";
 
 export default function Story() {
   const storyRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const prefersReducedMotion =
@@ -26,40 +28,47 @@ export default function Story() {
 
     const ctx = gsap.context(() => {
       // Header reveal
-      gsap.fromTo(
-        ".story-header-item",
-        { y: 25, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          stagger: 0.12,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: storyRef.current,
-            start: "top 80%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
+      if (headerRef.current && headerRef.current.children.length > 0) {
+        gsap.fromTo(
+          headerRef.current.children,
+          { y: 25, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            stagger: 0.12,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: headerRef.current,
+              start: "top 80%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      }
 
       // Arch and content reveal
-      gsap.fromTo(
-        ".story-body-item",
-        { y: 35, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.85,
-          stagger: 0.15,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: ".story-main-grid",
-            start: "top 78%",
-            toggleActions: "play none none reverse",
-          },
+      if (gridRef.current) {
+        const bodyItems = gridRef.current.querySelectorAll(".story-body-item");
+        if (bodyItems.length > 0) {
+          gsap.fromTo(
+            bodyItems,
+            { y: 35, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.85,
+              stagger: 0.15,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: gridRef.current,
+                start: "top 78%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
         }
-      );
+      }
     }, storyRef);
 
     return () => {
@@ -98,13 +107,13 @@ export default function Story() {
         {/* ====================================================
             Editorial Header: Clean Split Style (Matching Foundations)
         ==================================================== */}
-        <header className="story-header">
-          <div className="header-left">
+        <header className="story-header" ref={headerRef}>
+          <div className="header-left story-header-item">
             <span className="story-kicker">02 / STORY</span>
             <h2 className="story-title">About me.</h2>
           </div>
 
-          <div className="header-right">
+          <div className="header-right story-header-item">
             <p className="story-subtitle">
               Blending human ingenuity with intelligent systems to architect purposeful,
               frictionless digital experiences and scalable web software.
@@ -115,7 +124,7 @@ export default function Story() {
         {/* ====================================================
             Main Grid: Sculpted Arched Portrait + Signature & Story
         ==================================================== */}
-        <div className="story-main-grid">
+        <div className="story-main-grid" ref={gridRef}>
           {/* Left Wing: Distinctive Arched Portrait Portal */}
           <div className="story-arch-column story-body-item">
             <div className="arch-portal-container">
