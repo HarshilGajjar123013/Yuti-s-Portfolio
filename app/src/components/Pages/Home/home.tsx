@@ -297,9 +297,10 @@ export default function Home() {
 
         {/* Introduction */}
         <div className="hero-left-content">
-          <p className="bio-line">Hey there! I&apos;m Yuti Acharya</p>
-          <p className="bio-line">I turn people challenges into better systems, early ideas into initiatives, and collaboration into measurable progress.</p>
-        
+          <p className="bio-line bio-intro">Hey there! I&apos;m Yuti Acharya</p>
+          <p className="bio-line">
+            I turn people challenges into better systems, early ideas into initiatives, and collaboration into measurable progress.
+          </p>
 
           <div className="bio-accent-rule" aria-hidden="true" />
         </div>

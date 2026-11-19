@@ -173,22 +173,33 @@ $aubergine: #583b61;
     position: absolute;
     top: 44%;
     left: 5.9%;
+    max-width: clamp(280px, 26vw, 390px);
     z-index: 6;
 
     .bio-line {
       margin: 0;
       color: $navy;
-      font-size: clamp(0.95rem, 1.55vw, 1.75rem);
+      font-size: clamp(0.95rem, 1.15vw, 1.3rem);
       font-weight: 400;
-      line-height: 1.52;
-      white-space: nowrap;
+      line-height: 1.58;
+      white-space: normal;
+      word-break: normal;
+      overflow-wrap: break-word;
+
+      &.bio-intro {
+        font-weight: 600;
+        font-size: clamp(1.05rem, 1.28vw, 1.45rem);
+        color: $navy;
+        margin-bottom: 0.45rem;
+      }
     }
 
     .bio-accent-rule {
-      width: 5vw;
+      width: clamp(38px, 4vw, 54px);
       height: 2px;
-      margin-top: 1.3vw;
+      margin-top: 1.25rem;
       background: $oxblood;
+      border-radius: 2px;
     }
   }
 
@@ -349,9 +360,17 @@ $aubergine: #583b61;
     .hero-left-content {
       top: 43%;
       left: 4%;
+      max-width: 250px;
 
       .bio-line {
-        font-size: clamp(0.85rem, 1.6vw, 1.1rem);
+        font-size: clamp(0.85rem, 1.4vw, 1.05rem);
+        line-height: 1.5;
+
+        &.bio-intro {
+          font-weight: 600;
+          font-size: 1.05rem;
+          margin-bottom: 0.3rem;
+        }
       }
     }
 
@@ -361,15 +380,57 @@ $aubergine: #583b61;
     }
 
     .hero-right-content {
-      left: 75%;
+      left: 76%;
 
       .disciplines-track {
-        gap: 1.7vw;
+        gap: 1.5vw;
       }
 
       .disciplines-list .discipline-row {
-        font-size: clamp(0.75rem, 1.5vw, 1rem);
+        font-size: clamp(0.75rem, 1.3vw, 0.95rem);
       }
+    }
+  }
+}
+
+/* Compact Laptop (13"-14" screens, e.g. 1280x800, 1366x768) */
+@media screen and (min-width: 1025px) and (max-width: 1366px) {
+  .hero-page {
+    .hero-left-content {
+      left: 5%;
+      top: 42%;
+      max-width: 320px;
+
+      .bio-line {
+        font-size: 1.02rem;
+        line-height: 1.52;
+
+        &.bio-intro {
+          font-size: 1.15rem;
+        }
+      }
+    }
+
+    .portrait-container {
+      left: 54.5%;
+      height: 72vh;
+    }
+
+    .hero-right-content {
+      left: 77.5%;
+
+      .disciplines-track {
+        gap: 2.2vw;
+      }
+
+      .disciplines-list .discipline-row {
+        font-size: 1.12rem;
+      }
+    }
+
+    .hero-cta-corner {
+      left: 5%;
+      top: 81%;
     }
   }
 }
